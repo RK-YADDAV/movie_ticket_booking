@@ -18,7 +18,6 @@ const MovieDetails = () => {
     const {shows, axios, getToken, user, fetchFavoriteMovies, favoriteMovies, image_base_url} = useAppContext()
 
     const getShow = async ()=>{
-        const show = dummyShowsData.find(show => show._id === id)
         try {
             const {data} =await axios.get(`/api/show/${id}`)
             if(data.success){
@@ -51,7 +50,7 @@ const MovieDetails = () => {
   return show ? (
     <div className='px-6 md:px-16 lg:px-40 pt-30 md:pt-50'>
         <div className='flex slex-col md:flex-row gap-8 max-w-6xl mx-auto'>
-            <img src={image_base_url+show.movie.poster_path} alt="" className='max-md:mx-auto rounded-xl h104 max-w-70 object-cover'/>
+            <img src={image_base_url + show.movie.poster_path} alt="" className='max-md:mx-auto rounded-xl h104 max-w-70 object-cover'/>
 
             <div className='relative flex flex-col gap-3'>
                 <BlurCircle top='-100px' left='-100px'/>

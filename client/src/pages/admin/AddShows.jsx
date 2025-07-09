@@ -61,7 +61,7 @@ const AddShows = () => {
     const handleSubmit = async()=>{
         try {
             setAddingShow(true)
-            if(!selectedMovie || Object.keys(dateTimeSelection.length === 0 || !showPrice)){
+            if(!selectedMovie || Object.keys(dateTimeSelection).length === 0 || !showPrice){
                 return toast('missing required fields')
             }  
             const showInput = Object.entries(dateTimeSelection).map(([date, time])=> ({date, time}));
@@ -93,7 +93,7 @@ const AddShows = () => {
         if(user){
             fetchNowPlayingMovies();
         }
-    },[]);
+    },[user]);
 
   return nowPlayingMovies.length >0 ?(
     <>
@@ -105,7 +105,7 @@ const AddShows = () => {
                 <div key={movie.id} className={`relative max-w-40 cursor-pointer group-hover:not-hover:opacity-40 
                     hover:-translate-y-1 transition duration-300`} onClick={() => setSelectedMovie(movie.id)}>
                     <div className='relative rounded-lg overflow-hidden'>
-                        <img src={image_base_url+movie.poster_path} alt="" className='w-full object-cover brightness-90'/>
+                        <img src={image_base_url + movie.poster_path} alt="" className='w-full object-cover brightness-90'/>
                         <div className='text-sm flex items-center justify-between p-2 bg-black/70 w-full absolute bottom-0 left-0'>
                             <p className='flex items-center gap-1 text-gray-400'>
                                 <StarIcon className='w-4 h-4 text-primary fill-primary'/>
