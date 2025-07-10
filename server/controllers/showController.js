@@ -8,7 +8,7 @@ export const getNowPlayingMovies = async (req, res)=> {
             headers: {Authorization: `Bearer ${process.env.TMDB_API_KEY}`}
         })
         const movie = data.results;
-        res.json({success: true, movie:movies})
+        res.json({success: true, movie:movie})
     }catch (error) {
         console.error(error)
         res.json({success: false, message:error.message})
@@ -41,18 +41,18 @@ export const getNowPlayingMovies = async (req, res)=> {
                 poster_path: movieAPiData.poster_path,
                 backdrop_path: movieAPiData.backdrop_path,
                 genres: movieAPiData.genres,
-                casts: movieCreditsData.casts,
+                casts: movieCreditsData.cast,
                 release_date: movieAPiData.release_date,
                 original_language: movieAPiData.original_language,
                 tagline: movieAPiData.tagline || "",
                 vote_average: movieAPiData.vote_average,
-                runtime: movieAPiData,runtime,
+                runtime: movieAPiData.runtime,
             }
             movie =await Movie.create(movieDetails);
         }
 
         const showsToCreate = [];
-        showsInput.forEach(show=>{
+        showInput.forEach(show=>{
             const showDate= show.date;
             show.time.forEach((time) => {
                 const dateTimeString = `${showDate}T${time}`;
